@@ -87,30 +87,8 @@ async function init() {
     MostrarTareas(listaTareas);
 }
 
-//window.addEventListener("DOMContentLoaded", init);
+window.addEventListener("DOMContentLoaded", init);
 
-const tareasPrueba = [
-    {
-        titulo: "Matemáticas",
-        descripcion: "Resolver ejercicios 1 a 10",
-        fechaEntrega: "2026-11-06",
-        estado: "Pendiente"
-    },
-    {
-        titulo: "Blender",
-        descripcion: "Hacer bake de texturas",
-        fechaEntrega: "2026-11-08",
-        estado: "En progreso"
-    },
-    {
-        titulo: "AKR",
-        descripcion: "Conectar Mongo Atlas",
-        fechaEntrega: "2026-11-10",
-        estado: "Pendiente"
-    }
-];
-
-MostrarTareas(tareasPrueba);
 
 
 //apartado para funcionews visuales
