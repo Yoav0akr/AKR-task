@@ -111,13 +111,14 @@ a {
 }
 
 .tabla-tareas {
-    display:grid;
+    display: grid;
     margin-top: 20px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
     max-width: 100%;
     margin: 20px;
 }
+
 
 .tarea {
     border: 1px solid #ccc;
@@ -128,16 +129,15 @@ a {
     max-height: 300px;
 }
 
-.tarea.titulo {
+.tarea .titulo {
     font-weight: bold;
     margin-bottom: 5px;
     color: #fffdfd;
 }
 
-.tarea.descripcion {
+.tarea .descripcion {
     color: #fffdfd;
 }
-
 .tarea .fechas {
     background-color: hwb(278 42% 7% / 0.405);
     display: flex;

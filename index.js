@@ -1,46 +1,11 @@
-//js puro
 
+// Elementos principales
 const TablaDeTareas = document.querySelector(".tabla-tareas");
-console.log(TablaDeTareas);
-function MostrarTareas(listaTareas) {
+const form = document.getElementById("formTarea");
+const formulario = document.querySelector(".formulario");
+const cancelButton = document.getElementById("cancelButton");
 
-    if (!listaTareas) return;
-
-    TablaDeTareas.innerHTML = ` <div class="tarea" id="GenerarTarea">
-                <p>+<br> Agregar Tarea</p>
-            </div>`;
-
-
-    listaTareas.forEach(tarea => {
-
-        const tarjeta = document.createElement("div");
-        tarjeta.className = "tarea";
-
-        const titulo = document.createElement("h1");
-        titulo.textContent = tarea.titulo;
-
-        const descripcion = document.createElement("p");
-        descripcion.textContent = tarea.descripcion;
-
-        const fecha = document.createElement("p");
-        fecha.textContent = tarea.fechaEntrega;
-
-        const estado = document.createElement("p");
-        estado.textContent = tarea.estado;
-
-        tarjeta.appendChild(titulo);
-        tarjeta.appendChild(descripcion);
-        tarjeta.appendChild(fecha);
-        tarjeta.appendChild(estado);
-
-        TablaDeTareas.appendChild(tarjeta);
-
-    });
-
-}
-
-
-// peticiones
+// Peticiones a la API
 async function query(method, body = null) {
 
     const options = {
@@ -58,12 +23,90 @@ async function query(method, body = null) {
 
     const data = await response.json();
 
+    if (!response.ok) {
+        throw new Error(data.error || "Error al consultar la API");
+    }
+
     return data;
 }
 
-// agregar tarea
-const form = document.getElementById("formTarea");
-form.addEventListener("submit", async (event) => {
+// Mostrar tareas
+function MostrarTareas(listaTareas) {
+
+    if (!Array.isArray(listaTareas)) return;
+
+    TablaDeTareas.innerHTML = `
+        <div class="tarea" id="GenerarTarea">
+            <p>+<br>Agregar Tarea</p>
+        </div>
+    `;
+
+    listaTareas.forEach(tarea => {
+
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "tarea";
+
+        const titulo = document.createElement("h1");
+        titulo.className = "titulo";
+        titulo.textContent = tarea.titulo;
+
+        const descripcion = document.createElement("p");
+        descripcion.className = "descripcion";
+        descripcion.textContent = tarea.descripcion;
+
+        const fechas = document.createElement("div");
+        fechas.className = "fechas";
+
+        const fechaEntrega = document.createElement("p");
+        fechaEntrega.className = "fecha";
+        fechaEntrega.textContent =
+            `Entrega: ${tarea.fechaEntrega}`;
+
+        const fechaCreacion = document.createElement("p");
+        fechaCreacion.className = "fecha";
+        fechaCreacion.textContent =
+            `Creación: ${
+                tarea.fechaCreacion
+                    ? new Date(tarea.fechaCreacion).toLocaleDateString()
+                    : "Sin fecha"
+            }`;
+
+        const estado = document.createElement("p");
+        estado.textContent = tarea.estado;
+
+        fechas.appendChild(fechaEntrega);
+        fechas.appendChild(fechaCreacion);
+
+        tarjeta.appendChild(titulo);
+        tarjeta.appendChild(descripcion);
+        tarjeta.appendChild(fechas);
+        tarjeta.appendChild(estado);
+
+        TablaDeTareas.appendChild(tarjeta);
+
+    });
+
+}
+
+// Inicializar aplicación
+async function init() {
+
+    try {
+        const listaTareas = await query("GET");
+
+        MostrarTareas(listaTareas);
+
+        formulario.classList.add("noVer");
+
+    } catch (error) {
+        console.error("Error al cargar tareas:", error);
+    }
+
+}
+
+// Crear tarea
+form.addEventListener("submit", async event => {
+
     event.preventDefault();
 
     const titulo = document.getElementById("titulo").value;
@@ -76,42 +119,49 @@ form.addEventListener("submit", async (event) => {
         fechaEntrega
     };
 
-    const resultado = await query("POST", nuevaTarea);
-    console.log(resultado);
+    try {
+
+        await query("POST", nuevaTarea);
+
+        form.reset();
+
+        formulario.classList.add("noVer");
+
+        const listaTareas = await query("GET");
+
+        MostrarTareas(listaTareas);
+
+    } catch (error) {
+        console.error("Error al crear tarea:", error);
+        alert(error.message);
+    }
+
 });
 
-// init
-async function init() {
+// Delegación de eventos para agregar tareas
+TablaDeTareas.addEventListener("click", event => {
 
-    const listaTareas = await query("GET");
-    MostrarTareas(listaTareas);
-}
+    const boton = event.target.closest("#GenerarTarea");
 
-window.addEventListener("DOMContentLoaded", init);
+    if (boton) {
+        formulario.classList.remove("noVer");
+    }
 
-
-
-//apartado para funcionews visuales
-
-// Mostrar y ocultar formulario
-const botonAgregar = document.getElementById("GenerarTarea");
-const formulario = document.querySelector(".formulario");
-const cancelButton = document.getElementById("cancelButton");
-
-botonAgregar.addEventListener("click", () => {
-    formulario.classList.remove("noVer");
 });
 
+// Cancelar formulario
 cancelButton.addEventListener("click", () => {
     formulario.classList.add("noVer");
 });
 
-formulario.addEventListener("click", (e) => {
+// Cerrar al pulsar fuera del formulario
+formulario.addEventListener("click", event => {
 
-    if (e.target === formulario) {
-
+    if (event.target === formulario) {
         formulario.classList.add("noVer");
-
     }
 
 });
+
+// Iniciar
+window.addEventListener("DOMContentLoaded", init);
