@@ -101,7 +101,11 @@ async function init() {
     } catch (error) {
         console.error("Error al cargar tareas:", error);
     }
-
+   TablaDeTareas.innerHTML = `
+        <div class="tarea" id="GenerarTarea">
+            <p>+<br>Agregar Tarea</p>
+        </div>
+    `;
 }
 
 // Crear tarea
