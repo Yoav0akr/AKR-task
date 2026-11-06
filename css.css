@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+body {
+    background-color: hwb(252 15% 81%);
+}
+
+nav {
+    background-color: hwb(252 29% 64%);
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    margin-left: auto;
+}
+
+li {
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: hwb(240 98% 0% / 0.405);
+}
+
+a {
+    text-decoration: none;
+    color: #fffdfd;
+    padding: 5px 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: row;
+    font-weight: bold;
+    color: #dcd7d7;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 50px;
+    max-height: 50px;
+    align-items: center;
+    padding: 5px;
+    background-color: hwb(240 98% 0% / 0.405);
+}
+
+.logo img {
+    display: flex;
+    max-width: 100%;
+    margin: 0 auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.logo h1 {
+    font-size: 2.5em;
+    margin-left: 10px;
+    color: #fffbfb;
+    display: flex;
+    align-items: row;
+}
+
+.logo h1 span {
+
+    color: #dcd7d7;
+    font-style: italic;
+    margin-left: 5px;
+}
+
+.hero {
+    background-color: hwb(253 35% 57%);
+    padding: 10px;
+
+    min-height: calc(100vh - 50px);
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero h1, .hero p {
+    display: flex;
+    color: #fffdfd;
+    margin-bottom: 20px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.footer {
+    background-color: hwb(252 29% 64%);
+    padding: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+.tabla-tareas {
+    display:grid;
+    margin-top: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 100%;
+    margin: 20px;
+}
+
+.tarea {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: hwb(240 98% 0% / 0.405);
+    max-height: 300px;
+}
+
+.tarea.titulo {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #fffdfd;
+}
+
+.tarea.descripcion {
+    color: #fffdfd;
+}
+
+.tarea .fechas {
+    background-color: hwb(278 42% 7% / 0.405);
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+
+    border-radius: 5px;
+    border: 3px solid #ccc;
+    align-items: center;
+}
+
+.tarea .fecha {
+    color: #fffdfd;
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+
+}
+
+.tarea button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: hwb(252 29% 64%);
+    color: #fffdfd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tarea button:hover {
+    background-color: hwb(252 29% 64% / 0.7);
+}
+
+
+#GenerarTarea {
+
+    display: flex;
+    justify-content: center;
+
+    padding: 5px 10px;
+    background-color: hwb(252 29% 64%);
+    color: #fffdfd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-justify: center;
+    align-items: center;
+}
+
+#GenerarTarea:hover {
+    background-color: hwb(252 29% 64% / 0.7);
+}
+
+#formTarea {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+}
+
+#formTarea label {
+    margin-bottom: 5px;
+    color: #fffdfd;
+}
+
+#formTarea input,
+#formTarea textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#formTarea button {
+    padding: 5px 10px;
+    background-color: hwb(252 29% 64%);
+    color: #fffdfd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="cancel"] {
+    background-color: hwb(344 0% 0%);
+    margin-top: 10px;
+    width: 100%;
+}
+
+button[type="cancel"]:hover {
+    background-color: hwb(344 0% 43% / 0.7);
+}
+
+#formTarea button:hover {
+    background-color: hwb(253 0% 0% / 0.7);
+}
+
+#formTarea .error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+#formTarea textarea {
+    resize: vertical;
+    min-height: 15px;
+    max-height: 125px;
+    overflow-y: auto;
+}
+
+.fechaEntrega {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    min-width: max-content;
+}
+
+.formulario {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.6);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+    z-index: 1000;
+
+}
+
+
+
+
+.noVer {
+    display: none;
+}
+
+#GenerarTarea {
+    border: 4px dashed yellow;
+    min-height: 150px;
+    font-size: 2rem;
+}

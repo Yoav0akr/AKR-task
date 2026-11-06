@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css.css">
+    <link rel="icon" type="image/x-icon" href="./socurses/AKRlogo.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="./socurses/AKRlogo.ico" alt="Logo">
+            <h1>AKR <span>task</span></h1>
+        </div>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>Welcome to AKR Task</h1>
+        <p>un tareador comun de los que se encuentan en repos de guit hub chafas</p>
+    </section>
+    <section class="content">
+        <div class="formulario noVer">
+            <div class="tarea">
+                <form id="formTarea">
+
+                    <input type="text" id="titulo" placeholder="Título de la tarea" required>
+
+                    <textarea id="descripcion" placeholder="Descripción de la tarea" required></textarea>
+
+                    <label>
+                        <p> Fecha de entrega</p>
+                        <input type="date" id="fechaEntrega" required class="fechaEntrega">
+                    </label>
+
+                    <button type="submit">
+                        Crear tarea
+                    </button>
+                </form>
+                <button type="cancel" id="cancelButton">
+                    Cancelar
+                </button>
+
+            </div>
+        </div>
+
+
+
+
+        <div class="tabla-tareas">
+
+
+            <div class="tarea">
+                <h1 class="titulo">Título de la tarea</h1>
+                <p class="desk">Descripción de la tarea</p>
+                <div class="fechas">
+
+
+                    <p class="fecha">fecha de entrega: <span>2024-06-15</span></p>
+
+                    <p class="fecha">fecha de creación: <span>2024-06-10</span></p>
+
+                </div>
+                <button class="completada">Completada</button>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <section class="footer">
+        <p>&copy; 2024 AKR studios. All rights reserved.</p>
+    </section>
+
+
+
+    <script type="module" src="./index.js"></script>
+</body>
+
+</html>
