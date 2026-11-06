@@ -19,7 +19,7 @@ async function query(method, body = null) {
         options.body = JSON.stringify(body);
     }
 
-    const response = await fetch("/api/api", options);
+    const response = await fetch("/api/tareas", options);
 
     const data = await response.json();
 
