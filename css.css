@@ -91,7 +91,8 @@ a {
     flex-direction: column;
 }
 
-.hero h1, .hero p {
+.hero h1,
+.hero p {
     display: flex;
     color: #fffdfd;
     margin-bottom: 20px;
@@ -138,6 +139,7 @@ a {
 .tarea .descripcion {
     color: #fffdfd;
 }
+
 .tarea .fechas {
     background-color: hwb(278 42% 7% / 0.405);
     display: flex;
@@ -262,7 +264,7 @@ button[type="cancel"]:hover {
 
     inset: 0;
 
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
 
     display: flex;
 
@@ -284,4 +286,229 @@ button[type="cancel"]:hover {
     border: 4px dashed yellow;
     min-height: 150px;
     font-size: 2rem;
+}
+
+
+/* ==================================
+   CONFIGURACIÓN GENERAL RESPONSIVE
+================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* Contenedor principal */
+
+.hero {
+    width: calc(100% - 20px);
+    min-height: calc(100vh - 90px);
+}
+
+/* Navegación */
+
+nav {
+    width: calc(100% - 20px);
+    margin: 10px;
+    min-height: 60px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.logo {
+    flex-direction: row;
+    max-width: none;
+}
+
+.logo img {
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+}
+
+/* Cuadrícula de tareas */
+
+.tabla-tareas {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 10px;
+    grid-template-columns: repeat(auto-fit,
+            minmax(min(100%, 280px), 1fr));
+}
+
+.tarea {
+    height: auto;
+    min-height: 150px;
+    overflow-wrap: anywhere;
+}
+
+.tarea .fechas {
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tarea .fecha {
+    flex-wrap: wrap;
+}
+
+/* Formularios */
+
+#formTarea {
+    width: 100%;
+}
+
+#formTarea input,
+#formTarea textarea {
+    width: 100%;
+}
+
+.formulario {
+    padding: 15px;
+}
+
+.footer {
+    width: calc(100% - 20px);
+    margin: 10px;
+}
+
+/* ==================================
+   TABLETS
+================================== */
+
+@media screen and (max-width: 768px) {
+
+    nav {
+        justify-content: center;
+    }
+
+    nav ul {
+        margin-left: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    nav li {
+        margin-right: 0;
+    }
+
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero {
+        padding: 15px;
+    }
+
+    .tabla-tareas {
+        grid-template-columns: repeat(auto-fit,
+                minmax(min(100%, 240px), 1fr));
+        gap: 15px;
+    }
+
+    #GenerarTarea {
+        font-size: 1.5rem;
+        min-height: 100px;
+    }
+}
+
+/* ==================================
+   CELULARES
+================================== */
+
+@media screen and (max-width: 480px) {
+
+    nav {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .logo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+
+    nav ul {
+        width: 100%;
+        margin: 0;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    nav li {
+        margin: 0;
+    }
+
+    nav a {
+        display: block;
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .hero {
+        width: calc(100% - 20px);
+        min-height: 0;
+        height: auto;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .tabla-tareas {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 12px;
+        margin: 15px auto;
+    }
+
+    .tarea {
+        width: 100%;
+        max-height: none;
+    }
+
+    .tarea .fechas {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 5px;
+    }
+
+    .tarea .fecha {
+        justify-content: center;
+        margin: 2px;
+    }
+
+    .tarea button {
+        width: 100%;
+        min-height: 40px;
+    }
+
+    #GenerarTarea {
+        width: 100%;
+        min-height: 80px;
+        font-size: 1.3rem;
+    }
+
+    #formTarea {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .footer {
+        height: auto;
+        min-height: 50px;
+        text-align: center;
+    }
 }
